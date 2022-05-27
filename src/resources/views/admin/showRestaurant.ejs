@@ -23,7 +23,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Danh sách các món ăn trong nhà hàng</h3>
+            <h3 class="card-title">Danh sách các nhà hàng</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -31,28 +31,24 @@
               <thead>
                 <tr>
                   <th>STT</th>
-                  <th>Tên món</th>
-                  <th>Ảnh</th>
-                  <th>Đơn giá</th>
+                  <th>Quán ăn</th>
                   <th>Tùy chọn</th>
                 </tr>
               </thead>
               <tbody>
-                <% foods.forEach(function (food,i) { %>
+                <% restaurants.forEach(function (restaurant) { %>
                 <tr>
-                  <td><%= i+1 %></td>
-                  <td><%= food.name %></td>
-                  <td><img src="<%= food.image %>" alt="" width="200px" /></td>
-                  <td><%= food.price %></td>
+                  <td><%= restaurant.index %></td>
+                  <td><%= restaurant.name %></td>
                   <td>
-                    <a href="edit-food-<%= food._id %>"
+                    <a href="show-detail-restaurant-<%= restaurant._id %>"
                       ><i class="fas fa-edit"></i
                     ></a>
                     <a
                       href=""
                       data-toggle="modal"
                       data-target="#delete-food-model"
-                      data-id="<%= food._id %>"
+                      data-id="<%= restaurant._id %>"
                       ><i class="fas fa-trash"></i
                     ></a>
                   </td>
@@ -64,8 +60,6 @@
                   <th>STT</th>
                   <th>Tên món</th>
                   <th>Ảnh</th>
-                  <th>Đơn giá</th>
-                  <th>Tùy chọn</th>
                 </tr>
               </tfoot>
             </table>

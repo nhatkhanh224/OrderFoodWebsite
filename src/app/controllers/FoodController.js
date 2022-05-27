@@ -2,12 +2,12 @@ const Food = require("../models/Food");
 const Category = require("../models/Category");
 class FoodController {
   index(req, res) {
-    res.render("manager_restaurant/home", { layout: "layouts/admin" });
+    res.render("manager_restaurant/home", { layout: "layouts/admin_restaurant" });
   }
   showFood(req, res) {
-    Food.find({}, function (err, data) {
+    Food.find({user_id:req.cookies.userID}, function (err, data) {
       res.render("manager_restaurant/showFood", {
-        layout: "layouts/admin",
+        layout: "layouts/admin_restaurant",
         foods: data,
       });
     });
@@ -15,13 +15,21 @@ class FoodController {
   createFood(req, res) {
     Category.find({}, function (err, data) {
       res.render("manager_restaurant/createFood", {
-        layout: "layouts/admin",
+        layout: "layouts/admin_restaurant",
         categories: data,
       });
     });
   }
   postCreateFood(req, res) {
-    const food = new Food(req.body);
+    const user_id=req.cookies.userID;
+    const food = new Food({
+      name:req.body.name,
+      price:req.body.price,
+      image:req.body.image,
+      description:req.body.description,
+      category_id:req.body.categoryId,
+      user_id:user_id
+    });
     food
       .save()
       .then(() => res.redirect(`/show-food`))
@@ -35,7 +43,7 @@ class FoodController {
       .then((foods) => {
         Category.find().then((categories) => {
           res.render("manager_restaurant/editFood", {
-            layout: "layouts/admin",
+            layout: "layouts/admin_restaurant",
             foods: foods,
             categories: categories,
           });
