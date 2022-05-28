@@ -1,0 +1,125 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Danh sách món ăn</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Danh sách món ăn</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Danh sách các món ăn trong nhà hàng</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên loại</th>
+                  <th>Tùy chọn</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% categories.forEach(function (category,i) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= category.name %></td>
+                  <td>
+                    <a href="edit-category-restaurant-<%= category._id %>"
+                      ><i class="fas fa-edit"></i
+                    ></a>
+                    <a
+                      href=""
+                      data-toggle="modal"
+                      data-target="#delete-category-model"
+                      data-id="<%= category._id %>"
+                      ><i class="fas fa-trash"></i
+                    ></a>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên loại</th>
+                  <th>Tùy chọn</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- Button trigger modal -->
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="delete-category-model"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Xóa loại sản phẩm</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">Bạn có muốn xóa loại món ăn này ?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Đóng
+          </button>
+          <button type="button" id="btn-delete-category" class="btn btn-primary">Xóa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.content -->
+  <form method="POST" name="delete-category-form"></form>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let categoryId;
+      let deleteForm = document.forms["delete-category-form"];
+      $("#delete-category-model").on("show.bs.modal", function (event) {
+        var button = $(event.relatedTarget);
+        categoryId = button.data("id"); //Get id
+      });
+      var btnDeleteCategory= document.getElementById("btn-delete-category");
+      btnDeleteCategory.onclick = function (event) {
+        deleteForm.action = "/post-delete-category-restaurant/"+ categoryId;
+        deleteForm.submit();
+      };
+    });
+  </script>
+</div>

@@ -27,38 +27,30 @@
             
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" action="post-create-food" method="post">
+            <form role="form" action="post-update-category-restaurant/<%= categoryRestaurant._id %>" method="post">
               <div class="card-body">
                 <div class="form-group">
-                  <label>Tên món</label>
-                  <input type="text" class="form-control" name="name" placeholder="Nhập tên món ăn">
+                  <label>Tên loại</label>
+                  <input type="text" class="form-control" name="name" value="<%= categoryRestaurant.name %>" placeholder="Nhập loại món ăn">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Chọn loại món ăn</label>
-                  <select class="form-control" name="categoryRestaurantId" id="exampleFormControlSelect1">
+                  <select class="form-control" name="categoryId" id="exampleFormControlSelect1">
                     <option value="" selected disabled hidden>Chọn loại sản phẩm</option>
                     <% categories.forEach(function (category) { %>
-                    <option value="<%= category._id %>"><%= category.name %></option>
+                    <option value="<%= category._id %>" <%=( category._id == categoryRestaurant.categoryId ) ? "selected" : "" %>><%= category.name %></option>
                     <% }) %>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Giá tiền</label>
-                  <input type="text" class="form-control" name="price" placeholder="Nhập giá tiền món ăn">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlFile1">Chọn ảnh cho món ăn</label>
-                  <input type="text" class="form-control" name="image" placeholder="Nhập link ảnh món ăn">
-                </div>
-                <div class="form-group">
                   <label for="exampleFormControlTextarea1">Mô tả</label>
-                  <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"><%= categoryRestaurant.description %></textarea>
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Thêm</button>
+                <button type="submit" class="btn btn-primary">Sửa</button>
               </div>
             </form>
           </div>

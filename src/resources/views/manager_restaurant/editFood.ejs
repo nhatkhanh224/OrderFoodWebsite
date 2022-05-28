@@ -35,10 +35,10 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Chọn loại món ăn</label>
-                  <select class="form-control" name="categoryId" id="exampleFormControlSelect1">
+                  <select class="form-control" name="categoryRestaurantId" id="exampleFormControlSelect1">
                     <option value="" selected disabled hidden>Chọn loại sản phẩm</option>
                     <% categories.forEach(function (category) { %>
-                    <option value="<%= category._id %>" <%=( category._id == foods.categoryId ) ? "selected" : "" %>><%= category.name %></option>
+                    <option value="<%= category._id %>" <%=( category._id == foods.categoryRestaurantId ) ? "selected" : "" %>><%= category.name %></option>
                     <% }) %>
                   </select>
                 </div>

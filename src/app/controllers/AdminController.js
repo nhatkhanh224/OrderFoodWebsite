@@ -41,16 +41,6 @@ class RestaurantController {
           });
       })
       .catch(next);
-
-    // const user = new User({
-    //   email
-    // });
-    // user
-    //   .save()
-    //   .then(() => res.redirect(`/show-restaurant`))
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 }
 module.exports = new RestaurantController();
