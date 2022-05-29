@@ -5,6 +5,7 @@ const Restaurant = new Schema({
   manager_name: { type: String },
   email: { type: String },
   user_id: { type: String },
+  category_id: { type: String },
   number_phone: { type: String },
   address: { type: String },
   city: { type: String },
