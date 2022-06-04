@@ -6,6 +6,7 @@ const User = new Schema({
     password: { type: String },
     role: { type:String},
     restaurant_id: { type:String},
+    address: { type:String},
     createAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   });

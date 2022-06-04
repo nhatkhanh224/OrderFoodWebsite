@@ -34,6 +34,7 @@ router.post('/post-delete-category-restaurant/:id',categoryRestaurantController.
 router.post('/post-create-category',categoryController.postCreateCategory);
 router.get('/information',restaurantController.information);
 router.post('/save-information',restaurantController.saveInformation);
+router.get('/order',restaurantController.showOrder);
 router.get('/admin',adminController.index);
 router.get('/show-restaurant',adminController.showRestaurant);
 router.get('/show-detail-restaurant-:id',adminController.showDetailRestaurant);

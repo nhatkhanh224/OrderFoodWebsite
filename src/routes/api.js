@@ -1,7 +1,18 @@
-const express = require('express')
-const router=express.Router();
-const apiController = require('../app/controllers/APIController');
-router.get('/show-category',apiController.showCategory);
-router.get('/show-restaurant',apiController.showRestaurant);
-router.get('/show-restaurant/:id',apiController.showRestaurantByCategory);
+const express = require("express");
+const router = express.Router();
+const apiController = require("../app/controllers/APIController");
+const User = require("../app/models/User");
+router.get("/show-category", apiController.showCategory);
+router.get("/show-restaurant", apiController.showRestaurant);
+router.get("/show-restaurant/:id", apiController.showRestaurantByCategory);
+router.get("/show-restaurant-detail/:id", apiController.showRestaurantDetail);
+router.post("/login",apiController.login);
+router.post("/add-to-cart",apiController.addToCart);
+router.post("/update-cart",apiController.updateCart);
+router.post("/delete-cart",apiController.deleteCart);
+router.get("/cart/:id", apiController.showCart);
+router.get("/show-address/:id", apiController.showAddress);
+router.get("/show-food-cart/:restaurantId/:userID", apiController.showFoodCart);
+router.get("/get-total-cart/:id", apiController.getTotalCart);
+router.post("/order",apiController.order);
 module.exports = router;
