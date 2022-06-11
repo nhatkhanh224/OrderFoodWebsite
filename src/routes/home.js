@@ -9,11 +9,18 @@ const adminController = require('../app/controllers/AdminController');
 const authMiddleware = require("../app/middleware/AuthMiddleware");
 
 router.get('/',homeController.index);
+router.get('/list-restaurant',homeController.listRestaurant);
+router.get('/list-restaurant-:id',homeController.listRestaurant);
+router.get('/restaurant-detail-:id',homeController.restaurant);
 router.get('/login',homeController.login);
 router.post('/login',homeController.postLogin);
+router.get('/login-user',homeController.loginUser);
+router.post('/login-user',homeController.postLoginUser);
+router.get('/register',homeController.register);
 router.get('/logout',homeController.logout);
 router.get('/submit-restaurant',homeController.submitRestaurant);
 router.post('/post-restaurant',homeController.postSubmitRestaurant);
+router.post('/search',homeController.searchRestaurant);
 // Restaurant
 router.get('/restaurant',authMiddleware.requireAuth, restaurantController.index);
 //Food

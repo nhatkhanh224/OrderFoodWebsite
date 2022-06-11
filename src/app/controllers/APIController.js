@@ -48,6 +48,32 @@ class CategoryController {
       res.status(500).send("Server error: " + e.message);
     }
   }
+  async register(req, res) {
+    try {
+      const user = await User.findOne({
+        username: req.body.username,
+      });
+      if (user) {
+        res.send({
+          success: false,
+          message: "Username is exits",
+        });
+      } else {
+        const user = new User({
+          username: req.body.username,
+          password: req.body.password,
+          address: req.body.address,
+          phone_number: req.body.phone_number,
+          role: "user",
+        });
+        user
+          .save()
+          .then(() => res.send({ success: true, message: "Register Success" }));
+      }
+    } catch (e) {
+      res.status(500).send("Server error: " + e.message);
+    }
+  }
   addToCart(req, res) {
     const user_id = req.body.userID;
     Restaurant.findById(req.body.restaurant_id).then((restaurant) => {
@@ -111,6 +137,12 @@ class CategoryController {
       res.status(200).json(user.address);
     });
   }
+  showUser(req, res) {
+    const user_id = req.params.id;
+    User.findById(user_id).then((user) => {
+      res.status(200).json(user);
+    });
+  }
   showFoodCart(req, res) {
     const restaurant_id = req.params.restaurantId;
     const user_id = req.params.userID;
@@ -155,19 +187,21 @@ class CategoryController {
     // });
   }
   updateCart(req, res) {
-    Cart.find({ food_id: req.body.foodID, user_id: req.body.userID }).then((cart)=>{
-      Cart.findOneAndUpdate(
-        { _id: cart[0].id },
-        { $set: { quantity: req.body.quantity } },
-        { new: true },
-        (err, doc) => {
-          if (err) {
-            console.log("Something wrong when updating data!");
+    Cart.find({ food_id: req.body.foodID, user_id: req.body.userID }).then(
+      (cart) => {
+        Cart.findOneAndUpdate(
+          { _id: cart[0].id },
+          { $set: { quantity: req.body.quantity } },
+          { new: true },
+          (err, doc) => {
+            if (err) {
+              console.log("Something wrong when updating data!");
+            }
+            console.log(doc);
           }
-          console.log(doc);
-        }
-      );
-    })
+        );
+      }
+    );
     // Cart.findOneAndUpdate(
     //   { _id: req.body.cartID },
     //   { $set: { quantity: req.body.quantity } },
@@ -180,11 +214,32 @@ class CategoryController {
     //   }
     // );
   }
-  deleteCart(req,res) {
+  deleteCart(req, res) {
     console.log(req.body.cart_id);
-    Cart.deleteOne({ _id: req.body.cart_id})
+    Cart.deleteOne({ _id: req.body.cart_id })
       .then(() => res.send({ success: true, message: "Delete Success" }))
-      .catch((error)=>{
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  updateUser(req, res) {
+    const user_id = req.params.id;
+    User.findOneAndUpdate(
+      { _id: user_id },
+      {
+        $set: {
+          username: req.body.username,
+          password: req.body.password,
+          address: req.body.address,
+          phone_number: req.body.phoneNumber,
+        },
+      },
+      { new: true },
+    )
+      .then(() => {
+        res.send({ success: true, message: "Update Success" });
+      })
+      .catch((error) => {
         console.log(error);
       });
   }

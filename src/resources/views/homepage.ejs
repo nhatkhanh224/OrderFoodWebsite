@@ -3,27 +3,27 @@
       <div class="container">
           <div class="row justify-content-lg-start justify-content-md-center">
               <div class="col-xl-6 col-lg-8">
-                  <h1>Delivery or Takeaway Food</h1>
-                  <p>The best restaurants at the best price</p>
-                  <form method="post" action="grid-listing-filterscol.html">
+                  <h1>Giao hàng tận nơi</h1>
+                  <p>Các nhà hàng tốt nhất với mức giá tốt nhất</p>
+                  <form method="post" action="/search">
                       <div class="row no-gutters custom-search-input">
                           <div class="col-lg-10">
                               <div class="form-group">
-                                  <input class="form-control no_border_r" type="text" id="autocomplete" placeholder="Address, neighborhood...">
+                                  <input class="form-control no_border_r" type="text" name="key" placeholder="">
                               </div>
                           </div>
                           <div class="col-lg-2">
-                              <button class="btn_1 gradient" type="submit">Search</button>
+                              <button class="btn_1 gradient" type="submit">Tìm kiếm</button>
                           </div>
                       </div>
                       <!-- /row -->
                       <div class="search_trends">
                           <h5>Trending:</h5>
                           <ul>
-                              <li><a href="#0">Sushi</a></li>
-                              <li><a href="#0">Burgher</a></li>
-                              <li><a href="#0">Chinese</a></li>
-                              <li><a href="#0">Pizza</a></li>
+                              <li><a href="#0">Trà sữa</a></li>
+                              <li><a href="#0">Cơm</a></li>
+                              <li><a href="#0">Mì quảng</a></li>
+                              <li><a href="#0">Bún đậu</a></li>
                           </ul>
                       </div>
                   </form>
@@ -45,90 +45,19 @@
   <!-- /main_title -->
 
   <div class="owl-carousel owl-theme categories_carousel">
+    <% categories.forEach(function (category,i) { %>
       <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
+          <a href="list-restaurant-<%= category._id %>">
               <figure>
                   <span>98</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_pizza.jpg" alt="" class="owl-lazy" width="350" height="450">
+                  <img src="<%= category.thumbnail %>" data-src="<%= category.thumbnail %>" alt="" class="owl-lazy" width="350" height="450">
                   <div class="info">
-                      <h3>Pizza</h3>
-                      <small>Avg price $40</small>
+                      <h3><%= category.name %></h3>
                   </div>
               </figure>
           </a>
       </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>87</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_sushi.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Japanese</h3>
-                      <small>Avg price $50</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>55</span>
-                  <img src="web/img/home_cat_placeholder.jpg" data-src="img/home_cat_hamburgher.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Burghers</h3>
-                      <small>Avg price $55</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>55</span>
-                  <img src="web/img/home_cat_placeholder.jpg" data-src="img/home_cat_vegetarian.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Vegetarian</h3>
-                      <small>Avg price $40</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>65</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_bakery.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Bakery</h3>
-                      <small>Avg price $60</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>25</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_chinesse.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Chinese</h3>
-                      <small>Avg price $40</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
-      <div class="item_version_2">
-          <a href="grid-listing-filterscol.html">
-              <figure>
-                  <span>35</span>
-                  <img src="img/home_cat_placeholder.jpg" data-src="img/home_cat_mexican.jpg" alt="" class="owl-lazy" width="350" height="450">
-                  <div class="info">
-                      <h3>Mexican</h3>
-                      <small>Avg price $35</small>
-                  </div>
-              </figure>
-          </a>
-      </div>
+    <% }) %>
   </div>
   <!-- /carousel -->
 </div>
@@ -143,111 +72,30 @@
           <a href="#0">View All &rarr;</a>
       </div>
       <div class="row add_bottom_25">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
               <div class="list_home">
                   <ul>
+                    <% restaurants.forEach(function (restaurant,i) { %>
                       <li>
-                          <a href="detail-restaurant.html">
+                          <a href="restaurant-detail-<%= restaurant._id %>">
                               <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_1.jpg" alt="" class="lazy" width="350" height="233">
+                                  <img src="<%= restaurant.thumbnail %>" data-src="<%= restaurant.thumbnail %>" alt="" class="lazy" width="350" height="233">
                               </figure>
                               <div class="score"><strong>9.5</strong></div>
-                              <em>Italian</em>
-                              <h3>La Monnalisa</h3>
-                              <small>8 Patriot Square E2 9NF</small>
+                              <h3><%= restaurant.name %></h3>
                               <ul>
                                   <li><span class="ribbon off">-30%</span></li>
-                                  <li>Average price $35</li>
                               </ul>
                           </a>
                       </li>
-                      <li>
-                          <a href="detail-restaurant.html">
-                              <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_2.jpg" alt="" class="lazy" width="350" height="233">
-                              </figure>
-                              <div class="score"><strong>8.0</strong></div>
-                              <em>Mexican</em>
-                              <h3>Alliance</h3>
-                              <small>27 Old Gloucester St, 4563</small>
-                              <ul>
-                                  <li><span class="ribbon off">-40%</span></li>
-                                  <li>Average price $30</li>
-                              </ul>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="detail-restaurant.html">
-                              <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_3.jpg" alt="" class="lazy" width="350" height="233">
-                              </figure>
-                              <div class="score"><strong>9.0</strong></div>
-                              <em>Sushi - Japanese</em>
-                              <h3>Sushi Gold</h3>
-                              <small>Old Shire Ln EN9 3RX</small>
-                              <ul>
-                                  <li><span class="ribbon off">-25%</span></li>
-                                  <li>Average price $20</li>
-                              </ul>
-                          </a>
-                      </li>
+                    <% }) %>
                   </ul>
               </div>
           </div>
-          <div class="col-lg-6">
-              <div class="list_home">
-                  <ul>
-                      <li>
-                          <a href="detail-restaurant.html">
-                              <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_4.jpg" alt="" class="lazy" width="350" height="233">
-                              </figure>
-                              <div class="score"><strong>9.5</strong></div>
-                              <em>Vegetarian</em>
-                              <h3>Mr. Pepper</h3>
-                              <small>27 Old Gloucester St, 4563</small>
-                              <ul>
-                                  <li><span class="ribbon off">-30%</span></li>
-                                  <li>Average price $20</li>
-                              </ul>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="detail-restaurant.html">
-                              <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_5.jpg" alt="" class="lazy" width="350" height="233">
-                              </figure>
-                              <div class="score"><strong>8.0</strong></div>
-                              <em>Chinese</em>
-                              <h3>Dragon Tower</h3>
-                              <small>22 Hertsmere Rd E14 4ED</small>
-                              <ul>
-                                  <li><span class="ribbon off">-50%</span></li>
-                                  <li>Average price $35</li>
-                              </ul>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="detail-restaurant.html">
-                              <figure>
-                                  <img src="img/location_list_placeholder.png" data-src="img/location_list_6.jpg" alt="" class="lazy" width="350" height="233">
-                              </figure>
-                              <div class="score"><strong>8.5</strong></div>
-                              <em>Pizza - Italian</em>
-                              <h3>Bella Napoli</h3>
-                              <small>135 Newtownards Road BT4</small>
-                              <ul>
-                                  <li><span class="ribbon off">-45%</span></li>
-                                  <li>Average price $25</li>
-                              </ul>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+          
       </div>
       <!-- /row -->
-      <div class="banner lazy" data-bg="url(img/banner_bg_desktop.jpg)">
+      <div class="banner lazy" data-bg="url(https://vietnamdulich.net/wp-content/uploads/2020/07/amthucviet.jpg)">
           <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)">
               <div>
                   <small>FooYes Delivery</small>

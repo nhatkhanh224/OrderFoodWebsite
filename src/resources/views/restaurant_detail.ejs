@@ -1,0 +1,146 @@
+<main>
+  <div class="hero_in detail_page background-image" data-background="url(<%= restaurant.thumbnail %>)">
+      <div class="wrapper opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+          <div class="container">
+              <div class="main_info">
+                  <div class="row">
+                      <div class="col-xl-4 col-lg-5 col-md-6">
+                          <div class="head">
+                              <div class="score"><span>Superb<em>350 Reviews</em></span><strong>8.9</strong></div>
+                          </div>
+                          <h1><%= restaurant.name %></h1>
+                      </div>
+                      <div class="col-xl-8 col-lg-7 col-md-6">
+                          <div class="buttons clearfix">
+                              <span class="magnific-gallery">
+                                  <a href="img/detail_1.jpg" class="btn_hero" title="Photo title" data-effect="mfp-zoom-in"><i class="icon_image"></i>View photos</a>
+                                  <a href="img/detail_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                                  <a href="img/detail_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                              </span>
+                              <a href="#0" class="btn_hero wishlist"><i class="icon_heart"></i>Wishlist</a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- /row -->
+              </div>
+              <!-- /main_info -->
+          </div>
+      </div>
+  </div>
+  <!--/hero_in-->
+
+  <nav class="secondary_nav sticky_horizontal">
+      <div class="container">
+          <ul id="secondary_nav">
+            <!-- <% categories.forEach(function (category,i) { %>
+              <li><a class="list-group-item list-group-item-action" href="#section-<%= i+1 %>"><%= category.name %></a></li>
+            <% }) %> -->
+          </ul>
+      </div>
+      <span></span>
+  </nav>
+  <!-- /secondary_nav -->
+
+  <div class="bg_gray">
+      <div class="container margin_detail">
+          <div class="row">
+              <div class="col-lg-8 list_menu">
+                  <section id="">
+                      <h4>Các món ăn</h4>
+                      <div class="table_wrapper">
+                          <table class="table cart-list menu-gallery">
+                              <thead>
+                                  <tr>
+                                      <th>
+                                          Item
+                                      </th>
+                                      <th>
+                                          Price
+                                      </th>
+                                      <th>
+                                          Order
+                                      </th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <% foods.forEach(function (food,i) { %>
+                                  <tr>
+                                      <td class="d-md-flex align-items-center">
+                                          <figure>
+                                            <a href="" title="Photo title" data-effect="mfp-zoom-in"><img src="<%= food.image %>" data-src="<%= food.image %>" alt="thumb" class="lazy"></a>
+                                          </figure>
+                                          <div class="flex-md-column">
+                                              <h4><%= food.name %></h4>
+                                              <p>
+                                                <%= food.description %>
+                                              </p>
+                                          </div>
+                                      </td>
+                                      <td>
+                                          <strong><%= food.price %> đ</strong>
+                                      </td>
+                                      <td class="options">
+                                          <div class="dropdown dropdown-options">
+                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+                                              <div class="dropdown-menu">
+                                                  <h5>Select an option</h5>
+                                                  <ul class="clearfix">
+                                                      <li>
+                                                          <label class="container_radio">Medium<small>+ $3.30</small>
+                                                              <input type="radio" value="option1" name="options_1">
+                                                              <span class="checkmark"></span>
+                                                          </label>
+                                                      </li>
+                                                      <li>
+                                                          <label class="container_radio">Large<small>+ $5.30</small>
+                                                              <input type="radio" value="option2" name="options_1">
+                                                              <span class="checkmark"></span>
+                                                          </label>
+                                                      </li>
+                                                      <li>
+                                                          <label class="container_radio">Extra Large<small>+ $8.30</small>
+                                                              <input type="radio" value="option3" name="options_1">
+                                                              <span class="checkmark"></span>
+                                                          </label>
+                                                      </li>
+                                                  </ul>
+                                                  <h5>Add ingredients</h5>
+                                                  <ul class="clearfix">
+                                                      <li>
+                                                          <label class="container_check">Extra Tomato<small>+ $4.30</small>
+                                                              <input type="checkbox">
+                                                              <span class="checkmark"></span>
+                                                          </label>
+                                                      </li>
+                                                      <li>
+                                                          <label class="container_check">Extra Peppers<small>+ $2.50</small>
+                                                              <input type="checkbox">
+                                                              <span class="checkmark"></span>
+                                                          </label>
+                                                      </li>
+                                                  </ul>
+                                                  <a href="#0" class="btn_1">Add to cart</a>
+                                              </div>
+                                          </div>
+                                      </td>
+                                  </tr>
+                                <% }) %>
+                              </tbody>
+                          </table>
+                      </div>
+                  </section>
+                 
+                  <!-- /section -->
+              </div>
+              <!-- /col -->
+
+          </div>
+          <!-- /row -->
+      </div>
+      <!-- /container -->
+  </div>
+  <!-- /bg_gray -->
+
+  
+  <!-- /container -->
+</main>
