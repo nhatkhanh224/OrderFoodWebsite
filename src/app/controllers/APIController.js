@@ -243,5 +243,12 @@ class CategoryController {
         console.log(error);
       });
   }
+  searchRestaurant(req,res) {
+    const key = req.params.key;
+    console.log(key);
+    Restaurant.find({name: {$regex: key, $options: 'i'}}).then((restaurant)=>{
+      res.status(200).json(restaurant);
+    });
+  }
 }
 module.exports = new CategoryController();

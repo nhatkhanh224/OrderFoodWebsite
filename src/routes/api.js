@@ -18,4 +18,5 @@ router.get("/show-food-cart/:restaurantId/:userID", apiController.showFoodCart);
 router.get("/get-total-cart/:id", apiController.getTotalCart);
 router.post("/order",apiController.order);
 router.post("/update-user/:id",apiController.updateUser);
+router.get("/search/:key",apiController.searchRestaurant);
 module.exports = router;
